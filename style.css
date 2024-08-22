@@ -12,13 +12,20 @@ p {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-
+a {
+  color: rgb(155, 247, 216);
+}
+a:hover {
+  color: rgb(36, 188, 222);
+}
 /* HEAD STYLES */
 h1,
 h2,
 h3,
 h4 {
   text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 header p {
@@ -151,6 +158,10 @@ button.descending:hover {
 footer {
   position: absolute;
   bottom: 0;
+  right: 0;
+  text-align: right;
   width: 100%;
   height: 2.5rem; /* Footer height */
+  font-size: small;
+  color: gray;
 }
