@@ -9,7 +9,7 @@
   </head>
   <body>
     <header>
-      <h1>Leading and Lagging Varibles</h1>
+      <h1>Leading and Lagging Variables</h1>
       <p>
         For
         <button
@@ -113,7 +113,8 @@
       return;
     }
     function restyleButton(sortButton) {
-      if (sortButton.textContent === 'ASCENDING') {
+      let text = sortButton.textContent.trim();
+      if (text === 'ASCENDING') {
         sortButton.textContent = 'DESCENDING';
         sortButton.classList.remove('ascending');
         sortButton.classList.add('descending');
@@ -122,17 +123,18 @@
         sortButton.classList.remove('descending');
         sortButton.classList.add('ascending');
       }
+      return;
     }
 
-    const sortButton = document.querySelector('#sort');
     const cells = document.getElementsByTagName('td');
     restyleCells(cells);
+    const sortButton = document.querySelector('#sort');
 
     sortButton.addEventListener('click', function sortTable() {
-      console.log('click');
-      restyleButton(sortButton);
       invertCells(cells);
       restyleCells(cells);
+      restyleButton(sortButton);
+      console.log('txt:', sortButton.textContent);
       return;
     });
   </script>
