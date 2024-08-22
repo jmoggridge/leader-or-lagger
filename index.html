@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h2>Arex you leading or are you lagging??</h2>
+      <p>
+        For
+        <button
+          id="sort"
+          class="ascending"
+          aria-controls="order of the year variable in the table">
+          ASCENDING
+        </button>
+        values,
+        <i>e.g.</i>
+      </p>
+    </header>
+    <main>
+      <table>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">&nbsp;&nbsp;year&nbsp;&nbsp;</th>
+          <th scope="col">lead(year)</th>
+          <th scope="col">lag(year)</th>
+        </tr>
+        <tr>
+          <th scope="row">1</th>
+          <td>2001</td>
+          <td>2002</td>
+          <td>NA</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>2002</td>
+          <td>2003</td>
+          <td>2001</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>2003</td>
+          <td>2004</td>
+          <td>2002</td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>2004</td>
+          <td>2005</td>
+          <td>2003</td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>2005</td>
+          <td>NA</td>
+          <td>2004</td>
+        </tr>
+      </table>
+      <div>
+        <div id="explainer">
+          <div class="funfact">
+            <h2 class="function">lead(x)</h2>
+            <p class="blurb">
+              Lifts values <b>up</b>. Missing values appear at the end of the
+              vector.
+            </p>
+          </div>
+          <div class="funfact">
+            <h2 class="function">&nbsp;lag(x)</h2>
+            <p class="blurb">
+              Pushes values <b>down</b>. Missing values appear at the beginning
+              of the vector.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    function getStyleOf(year) {
+      return 'year' + String(2000 - Number(year));
+    }
+    function restyleCells(cells) {
+      for (let cell of cells) {
+        const text = cell.textContent;
+        if (text.startsWith('200')) {
+          const style = getStyleOf(text);
+          cell.classList.add(style);
+        }
+        if (text == 'NA') {
+          cell.classList.add('year-na');
+        }
+      }
+      return;
+    }
+
+    function invertCells(cells) {
+      for (let cell of cells) {
+        const text = cell.textContent;
+        const newval = 2001 + (2005 - Number(text));
+        cell.textContent = newval;
+        cell.classList.remove(getStyleOf(text));
+      }
+      return;
+    }
+    function restyleButton(sortButton) {
+      if (sortButton.textContent === 'ASCENDING') {
+        sortButton.textContent = 'DESCENDING';
+        sortButton.classList.remove('ascending');
+        sortButton.classList.add('descending');
+      } else {
+        sortButton.textContent = 'ASCENDING';
+        sortButton.classList.remove('descending');
+        sortButton.classList.add('ascending');
+      }
+    }
+
+    const sortButton = document.querySelector('#sort');
+    const cells = document.getElementsByTagName('td');
+    restyleCells(cells);
+
+    sortButton.addEventListener('click', function sortTable() {
+      console.log('click');
+      restyleButton(sortButton);
+      invertCells(cells);
+      restyleCells(cells);
+      return;
+    });
+  </script>
+</html>
